@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
         user.setId(1L);
         user.setName("uubird");
         user.setAge(25);
-        logger.info("queryById"+user);
+        logger.info("queryById"+user.getName());
         return user;
     }
 }
