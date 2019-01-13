@@ -1,5 +1,7 @@
 package com.example.beans.user;
 
+import jdk.nashorn.internal.parser.JSONParser;
+
 import java.io.Serializable;
 
 public class User implements Serializable {
