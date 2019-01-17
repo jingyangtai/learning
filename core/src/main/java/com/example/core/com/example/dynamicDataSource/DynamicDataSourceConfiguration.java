@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,18 @@ import java.util.Map;
 @MapperScan(basePackages = "com.example.dao")
 @Configuration
 public class DynamicDataSourceConfiguration {
+    /**
+     * Mappers Locations
+     * */
+    @Value(value="${mybatis.mapper-locations}")
+    private String mapperLocations;
+
+    /**
+     * Mapper configLocation
+     * */
+    @Value(value="${mybatis.config-locations}")
+    private String mapperConfigLocations;
+
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource.master.hikari")
@@ -56,7 +69,8 @@ public class DynamicDataSourceConfiguration {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dynamicDataSource());
         //此处设置为了解决找不到mapper文件的问题
-        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/**/*.xml"));
+        sqlSessionFactoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource(mapperConfigLocations));
+        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(mapperLocations));
         return sqlSessionFactoryBean.getObject();
     }
 

@@ -54,7 +54,7 @@ public class DynamicDataSourceAspect {
     }
 
     @Before(value = "pointCut()")
-    public void doBeforeWithSlave(JoinPoint joinPoint) {
+    public void doBeforeWithMaster(JoinPoint joinPoint) {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         //获取当前切点方法对象
         Method method = methodSignature.getMethod();
@@ -68,7 +68,7 @@ public class DynamicDataSourceAspect {
             }
         }
         if (null == method.getAnnotation(TargetDataSource.class)) {
-            DynamicDataSourceContextHolder.setSlave();
+            DynamicDataSourceContextHolder.set(DataSourceKey.DS_MASTER);
         }
     }
 

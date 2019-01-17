@@ -4,7 +4,7 @@
     <sql id="Base_Column_List" >
         id, name, age
     </sql>
-    <resultMap id="BaseResultMap" type="com.example.beans.user.User">
+    <resultMap id="BaseResultMap" type="user">
         <id property="id" column="ID"/>
         <result property="name" column="Name"/>
         <result property="age" column="Age"/>

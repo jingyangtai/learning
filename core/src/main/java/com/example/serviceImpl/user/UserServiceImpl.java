@@ -2,6 +2,8 @@ package com.example.serviceImpl.user;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.example.beans.user.User;
+import com.example.core.com.example.dynamicDataSource.DataSourceKey;
+import com.example.core.com.example.dynamicDataSource.TargetDataSource;
 import com.example.dao.user.UserDao;
 import com.example.service.user.UserService;
 import org.slf4j.Logger;
@@ -18,6 +20,7 @@ public class UserServiceImpl implements UserService  {
 
 
     @Override
+    @TargetDataSource(dataSourceKey =DataSourceKey.DS_SLAVE)
     public User queryById(Long id) {
         return userDao.queryById(id);
     }

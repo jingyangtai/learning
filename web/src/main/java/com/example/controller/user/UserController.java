@@ -20,7 +20,6 @@ public class UserController {
 
     @RequestMapping(value = "/queryUserById/{id}",method = RequestMethod.GET)
     public User queryUserById(@PathVariable Long id){
-        logger.info("/user/queryUserById/"+id);
         return userSVI.queryById(id);
     }
 
