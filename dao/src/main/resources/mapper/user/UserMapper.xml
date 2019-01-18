@@ -16,4 +16,19 @@
         FROM user
         WHERE id = #{id}
     </select>
+
+    <update id="updateUser" parameterType="user">
+        update user
+        <set>
+            <if test="name!=null">
+                name=#{name,jdbcType=VARCHAR},
+            </if>
+            <if test="age!=null">
+                age=#{age,jdbcType=SMALLINT}
+            </if>
+        </set>
+        <where>
+            id=#{id,jdbcType=BIGINT}
+        </where>
+    </update>
 </mapper>

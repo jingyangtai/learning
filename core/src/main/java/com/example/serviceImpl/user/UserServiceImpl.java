@@ -9,6 +9,7 @@ import com.example.service.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -23,5 +24,11 @@ public class UserServiceImpl implements UserService  {
     @TargetDataSource(dataSourceKey =DataSourceKey.DS_SLAVE)
     public User queryById(Long id) {
         return userDao.queryById(id);
+    }
+
+    @Override
+    @Transactional
+    public int updateUser(User user) {
+        return userDao.updateUser(user);
     }
 }

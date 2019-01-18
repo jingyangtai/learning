@@ -12,5 +12,4 @@
         <!-- Bean 的首字母小写的非限定类名来作为它的别名-->
         <package name="com.example.beans"/>
     </typeAliases>
-
 </configuration>

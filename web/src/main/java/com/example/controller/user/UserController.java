@@ -23,4 +23,8 @@ public class UserController {
         return userSVI.queryById(id);
     }
 
+    @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
+    public int updateUser(User user){
+         return userSVI.updateUser(user);
+    }
 }

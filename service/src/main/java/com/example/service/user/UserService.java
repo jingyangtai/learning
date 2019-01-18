@@ -4,5 +4,7 @@ import com.example.beans.user.User;
 
 public interface UserService {
     User queryById(Long id);
+
+    int updateUser(User user);
 }
 
